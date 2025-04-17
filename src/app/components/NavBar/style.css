@@ -1,0 +1,53 @@
+/* Navbar fixed styles */
+nav.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  gap: 1rem;
+  z-index: 100;
+  background-color: #f1ecff;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.dark nav.fixed {
+  background-color: #111827;
+  /* Dark mode */
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5);
+}
+
+.text-light-pink {
+  color: lightpink;
+}
+
+
+
+a::after {
+  bottom: 0%;
+
+  height: 2px;
+  background: #d48ed0;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+a:hover::after {
+  width: 100%;
+
+}
+
+a:hover {
+  color: #895080;
+  /* Changez la couleur au survol si nécessaire */
+}
+
+
+.mobile-menu {
+  transition: none !important; /* Désactive les transitions CSS externes */
+  transform-origin: top center;
+}
+
+.mobile-menu a {
+  pointer-events: auto !important;
+}
