@@ -3,7 +3,8 @@
 import {
   AnimatePresence,
   motion,
-
+  useMotionValueEvent,
+  useScroll,
 } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
@@ -12,7 +13,16 @@ import "./style.css";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [hidden] = useState(false);
+  const [hidden,setHidden] = useState(false);
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (typeof previous === "number" && latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
 
   const links = [
     { name: "Accueil", href: "#home" },

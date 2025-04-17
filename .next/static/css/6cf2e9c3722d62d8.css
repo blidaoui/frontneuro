@@ -1,1 +1,0 @@
-.text-light-pink{color:#d8c2d2}.color-change{animation:colorShift 4s infinite;margin:50px auto}@keyframes colorShift{0%{color:rgb(198,151,196)}50%{color:rgb(183,105,223)}to{color:rgba(219,189,222,.906)}}
