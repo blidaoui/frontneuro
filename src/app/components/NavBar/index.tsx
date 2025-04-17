@@ -97,7 +97,7 @@ export default function Navbar() {
 
           {/* Mobile Button */}
           <button
-            className="md:hidden p-2 items-center justify-center text-dark-purple dark:text-dark-purple"
+            className="md:hidden p-2 items-center justify-center text-purple-900 dark:text-dark-purple"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Menu"
           >
@@ -123,7 +123,7 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleSmoothScroll(e, link.href.slice(1))}
-                  className="block text-dark-purple dark:text-dark-purple hover:bg-custom-color dark:hover:text-light-pink px-3 py-2 rounded-md transition-colors"
+                  className="block text-purple-900 dark:text-dark-purple hover:bg-custom-color dark:hover:text-light-pink px-3 py-2 rounded-md transition-colors"
                 >
                   {link.name}
                 </a>
