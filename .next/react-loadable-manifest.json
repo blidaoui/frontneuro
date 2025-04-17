@@ -1,1 +1,20 @@
-{}
+{
+  "..\\node_modules\\next\\dist\\client\\components\\react-dev-overlay\\utils\\use-websocket.js -> @vercel/turbopack-ecmascript-runtime/browser/dev/hmr-client/hmr-client.ts": {
+    "id": "..\\node_modules\\next\\dist\\client\\components\\react-dev-overlay\\utils\\use-websocket.js -> @vercel/turbopack-ecmascript-runtime/browser/dev/hmr-client/hmr-client.ts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_next_dist_client_dev_noop-turbopack-hmr_js.js"
+    ]
+  },
+  "app\\components\\Form.tsx -> @/app/components/ParticleSystem/ParticleSystem": {
+    "id": "app\\components\\Form.tsx -> @/app/components/ParticleSystem/ParticleSystem",
+    "files": [
+      "static/chunks/_app-pages-browser_src_app_components_ParticleSystem_ParticleSystem_tsx.js"
+    ]
+  },
+  "app\\pages\\Footer\\page.tsx -> @/app/components/ParticleSystem/ParticleSystem": {
+    "id": "app\\pages\\Footer\\page.tsx -> @/app/components/ParticleSystem/ParticleSystem",
+    "files": [
+      "static/chunks/_app-pages-browser_src_app_components_ParticleSystem_ParticleSystem_tsx.js"
+    ]
+  }
+}
