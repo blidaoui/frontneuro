@@ -232,11 +232,6 @@ const StyledFormContainer = styled.div`
   width: 100%;
   max-width: 420px;
   padding: 20px;
-  background: rgb(229 226 243);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  border: 1px solid rgba(77, 24, 64, 0.1);
-  box-shadow: 0 8px 32px rgba(175, 112, 159, 0.3);
 
   .form-group {
   
@@ -255,8 +250,6 @@ const StyledFormContainer = styled.div`
   input,
   textarea {
     padding: 0.75rem 1rem;
-    border: 1px solid rgb(31 7 23 / 61%);
-    border-radius: 0.5rem;
     background: rgb(148 84 124 / 9%);
     color:rgb(64, 14, 64);
     font-size: 1rem;

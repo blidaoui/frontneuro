@@ -63,7 +63,7 @@ const Services = ({ selectedService, setSelectedService }: ServicesProps) => {
               }}
               className="group relative w-72 h-72 bg-pink-100/50 rounded-full shadow-2xl overflow-hidden border border-2  border-purple-900/10 hover:border-pink-400/50 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
             >
-              <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-10 mix-blend-soft-light" />
+              <div className="absolute inset-0  opacity-10 mix-blend-soft-light" />
               <motion.div
                 className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-30`}
                 initial={{ scale: 0.8 }}
