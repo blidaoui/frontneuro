@@ -461,7 +461,7 @@ export default function AboutPage() {
                 }}
               >
                 <Sparkles
-                  className="w-14 h-14 mt-8 md:w-16 md:h-16"
+                  className="w-14 h-14 mt-8 md:w-16 md:h-16" 
                   style={{
                     color: colors.darkPurple,
                     filter: `
