@@ -36,14 +36,14 @@ const Contact = () => {
             Contactez-nous
           </motion.h2>
           <h3 className="mb-6 text-l font-bold  text-purple-900">
-            Vous avez une question, un projet ou besoin de plus d'informations
+            Vous avez une question, un projet ou besoin de plus d&#39;informations
             Remplissez le formulaire et nous vous répondrons dans les plus brefs
             délais.{" "}
           </h3>
           <ul className="space-y-3 text-purple-900 text-sm">
             <li>📞 +33 6 12 34 56 78</li>
             <li>📧 contact@neuroflow.com</li>
-            <li>📍 42 rue de l’Innovation, Paris</li>
+            <li>📍 42 rue de l&#39;Innovation, Paris</li>
           </ul>
         </div>
         <div className="">
