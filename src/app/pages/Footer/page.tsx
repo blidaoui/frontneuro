@@ -51,7 +51,7 @@ export default function page() {
     },
   ];
   return (
-    <section className="bg-gradient-to-r from-white via-blue-50 to-purple-100  ">
+    <section className="bg-gradient-to-r ">
       <ParticleSystem />
 
       <div className="max-w-screen-xl px-4  mx-auto overflow-hidden sm:px-6 lg:px-8">

@@ -1,319 +1,163 @@
 "use client";
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import styled from "styled-components";
 
-const ParticleSystem = dynamic(
-  () =>
-    import("@/app/components/ParticleSystem/ParticleSystem").then(
-      (mod) => mod.ParticleSystem
-    ),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-cyan-900/20" />
-    ),
-  }
-);
+  const colors = {
+    darkPurple: "#4A1D96",
+    mediumPurple: "#7E3AF2",
+    darkPink: "#C7367D",
+    darkBlue: "#1E40AF",
+    lightBlue: "#3B82F6",
+  };
+
+
+const validatePhone = (number: string) => {
+  const cleaned = number.replace(/\s+/g, "");
+  const france = /^(\+33|0033|0)[1-9]\d{8}$/;
+  const tunisie = /^(\+216|00216)[2-9]\d{7}$/;
+  const europe = /^\+[\d]{10,14}$/;
+  return france.test(cleaned) || tunisie.test(cleaned) || europe.test(cleaned);
+};
 
 const NeuroflowContact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [name, setName] = useState("");
-  const [last_name, setLast_name] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [number_phone, setNumber_phone] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const requiredFields = [
-      { value: name, field: "Nom" },
-      { value: last_name, field: "Prénom" },
-      { value: email, field: "Email" },
-      { value: number_phone, field: "Téléphone" },
-      { value: message, field: "Message" },
-    ];
-
-    const missingField = requiredFields.find((f) => !f.value.trim());
-    if (missingField) {
-      return toast.error(`Le champ '${missingField.field}' est requis.`);
+    // Validation
+    if (!name.trim() || !lastName.trim() || !email.trim() || !phone.trim() || !message.trim()) {
+      return;
     }
 
+    if (!validatePhone(phone)) {
+      setError("Numéro invalide. Ex : +33 6 12 34 56 78 ou +216 20 123 456");
+      return;
+    }
+
+    setError("");
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(
-        "http://localhost:8000/neuroBackend/email/send",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name,
-            last_name,
-            number_phone,
-            email,
-            message,
-          }),
-        }
-      );
+      const response = await fetch("http://localhost:8000/neuroBackend/email/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          last_name: lastName,
+          number_phone: phone,
+          email,
+          message,
+        }),
+      });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`Erreur HTTP ${response.status}`);
 
-      const data = await response.json();
-      console.log("Response data:", data);
+      await response.json();
+      setName("");
+      setLastName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");
 
-      setTimeout(() => {
-        setIsSubmitting(false);
-        toast.success("Votre message a été envoyé avec succès!");
-        setName("");
-        setLast_name("");
-        setEmail("");
-        setNumber_phone("");
-        setMessage("");
-      }, 1600);
-    } catch (error) {
-      console.error("Submission error:", error);
-      toast.error(
-        error instanceof Error
-          ? `Échec de l'envoi : ${error.message}`
-          : "Erreur inconnue lors de la soumission"
-      );
+      setTimeout(() => setIsSubmitting(false), 1600);
+    } catch (err) {
+      console.error("Erreur:", err);
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="relative from-pink-900 to-blue-900 overflow-hidden">
-      <ParticleSystem />
-      <ToastContainer position="top-center" autoClose={3000} />
+           <div className="p-10">
+              <motion.h4
+                className="text-xl md:text-2xl font-bold text-center text-transparent bg-clip-text inline-block  md:mb-5"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                style={{
+                  backgroundImage: `linear-gradient(135deg, ${colors.darkPurple}, ${colors.darkPink})`,
+                  WebkitBackgroundClip: "text",
+                }}
+              >
+            { isSubmitting ? "Merci pour votre message !" :"Formulaire de contact"}
+              </motion.h4>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="relative flex justify-center"
-      >
-        <StyledFormContainer>
-          {!isSubmitting ? (
-            <form className="form " onSubmit={handleSubmit}>
-              <div className="form-group h-8  ">
-                <label htmlFor="name ">Nom</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Entrez votre nom"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="form-group h-8 ">
-                <label htmlFor="last_name">Prénom</label>
-                <input
-                  type="text"
-                  id="last_name"
-                  name="last_name"
-                  placeholder="Entrez votre prénom"
-                  value={last_name}
-                  onChange={(e) => setLast_name(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="form-group h-8">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Entrez votre email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="form-group h-8 ">
-                <label htmlFor="number_phone">Téléphone</label>
-                <input
-                  type="tel"
-                  id="number_phone"
-                  name="number_phone"
-                  placeholder="+1234567890"
-                  pattern="^\+?[0-9]{7,15}$"
-                  value={number_phone}
-                  onChange={(e) => setNumber_phone(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="form-group h-30">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  placeholder="Décrivez votre demande"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  required
-                />
-              </div>
-              <button
-                className="form-submit-btn"
-                type="submit"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <svg
-                      className="animate-spin h-5 w-5 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    Envoi en cours...
-                  </span>
-                ) : (
-                  "Envoyer"
-                )}
-              </button>
-            </form>
-          ) : (
-            <div className="form-success-message">
-              <svg
-                className="w-16 h-16 text-green-400 mx-auto mb-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-              <h3 className="text-2xl font-bold text-center text-purple-900 mb-2">
-                Message envoyé!
-              </h3>
-              <p className="text-center text-purple/80">
-                Nous vous contacterons bientôt.
-              </p>
-            </div>
-          )}
-        </StyledFormContainer>
-      </motion.div>
+        {!isSubmitting ? (
+          <form onSubmit={handleSubmit} className="space-y-4">
+
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Votre nom"
+              required
+              className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
+            />
+
+            <input
+              type="text"
+              name="last_name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Votre prénom"
+              required
+              className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
+            />
+
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Votre email"
+              required
+              className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
+            />
+
+            <input
+              type="tel"
+              name="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="Votre numéro (ex: +33 6 12 34 56 78)"
+              required
+              className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
+            />
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+
+            <textarea
+              name="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              rows={4}
+              placeholder="Votre message"
+              required
+              className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
+            ></textarea>
+
+            <motion.button
+              type="submit"
+              whileHover={{ scale: 1.05 }}
+              className="w-full py-3 rounded-lg bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold transition-transform"
+            >
+              Envoyer
+            </motion.button>
+          </form>
+        ) : (
+         
+            <p className="text-purple-700">Nous vous contacterons bientôt.</p>
+        )}
     </div>
   );
 };
-
-const StyledFormContainer = styled.div`
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  padding: 20px;
-
-  .form-group {
-  
-    margin-bottom: 45px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  label {
-    margin-bottom: 0.2rem;
-    font-weight: 600;
-    color: #65225d;
-    font-size: 0.95rem;
-  }
-
-  input,
-  textarea {
-    padding: 0.75rem 1rem;
-    background: rgb(148 84 124 / 9%);
-    color:rgb(64, 14, 64);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-
-    &:focus {
-      outline: none;
-      border-color: rgba(57, 19, 55, 0.5);
-      box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
-    }
-
-    &::placeholder {
-      color:rgb(66, 9, 66);
-    }
-  }
-
-  .form-submit-btn { 
-   margin-bottom:1rem; 
-
-    padding: 1rem;
-    width: 100%;
-    border: none;
-    border-radius: 0.5rem;
-    background: linear-gradient(
-      135deg,
-      rgb(245 111 245) 0%,
-      rgb(53, 14, 59) 100%
-    );
-    color: #ddd6e8;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(222, 104, 177, 0.1);
-
-    &:hover {
-      background: linear-gradient(
-        135deg,
-        rgb(182, 98, 181) 0%,
-        rgb(182, 75, 182) 100%
-      );
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    &:disabled {
-      background: linear-gradient(
-        135deg,
-        rgb(190, 181, 204) 0%,
-        rgb(187, 74, 174) 100%
-      );
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-  }
-
-  .form-success-message {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    text-align: center;
-  }
-`;
 
 export default NeuroflowContact;

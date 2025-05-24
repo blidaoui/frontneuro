@@ -7,5 +7,5 @@ export function cn(...inputs: ClassValue[]) {
 
 // Utilities additionnelles
 export function formatDate(date: Date) {
-  return new Intl.DateTimeFormat('fr-FR').format(date);
+  return new Intl.DateTimeFormat("fr-FR").format(date);
 }

@@ -51,3 +51,7 @@ a:hover {
 .mobile-menu a {
   pointer-events: auto !important;
 }
+
+.text-light-pink {
+  color: #d8c2d2;
+}
