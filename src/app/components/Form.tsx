@@ -47,7 +47,7 @@ const NeuroflowContact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://neuroflowconsulting.com:8000/neuroBackend/email/send", {
+      const response = await fetch("https://api.neuroflowconsulting.com/neuroBackend/email/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -87,7 +87,7 @@ const NeuroflowContact = () => {
                   WebkitBackgroundClip: "text",
                 }}
               >
-            { "Merci pour votre message !"}
+            { isSubmitting ? "Merci pour votre message !" :"Formulaire de contact"}
               </motion.h4>
 
         {!isSubmitting ? (
