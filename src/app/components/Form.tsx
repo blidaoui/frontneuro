@@ -47,7 +47,7 @@ const NeuroflowContact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://www.neuroflowconsulting.com:8000/neuroBackend/email/send", {
+      const response = await fetch("http://www.neuroflowconsulting.com/:8000/neuroBackend/email/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
