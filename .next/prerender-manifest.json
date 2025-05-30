@@ -78,30 +78,6 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/pages/Services": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/pages/Services",
-      "dataRoute": "/pages/Services.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/pages/Footer": {
       "experimentalBypassFor": [
         {
@@ -125,13 +101,37 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
+    },
+    "/pages/Services": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/pages/Services",
+      "dataRoute": "/pages/Services.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "f731c06c6f823ac9dea824a9060adaf6",
-    "previewModeSigningKey": "22ae07ed4074ab7281bb3e3eb57229b67a0dd67ed7be2b82e4fa9e76fa3343a1",
-    "previewModeEncryptionKey": "1bb21f494e095565ad1a19fd703b50ef4205dc3425ea6780c6106abddaabf110"
+    "previewModeId": "44283ef7cb2ac23d3354a49a934617e6",
+    "previewModeSigningKey": "b8a6680027d03941519ad8bf1e0289614fd04e0fb6342543ae662c5c431f15dc",
+    "previewModeEncryptionKey": "b2bc292506440567c63fa3df473383c9432dd068e3de810819be5e654a0fd875"
   }
 }
