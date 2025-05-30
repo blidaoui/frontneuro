@@ -1,11 +1,12 @@
 // app/page.tsx
+/*
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
-
+import LoadingSkeleton from "./components/Common/LoadingSkeleton";
+*/
 import ScrollUp from "./components/Common/ScrollUp";
 import Hero from "./components/Hero";
-import LoadingSkeleton from "./components/Common/LoadingSkeleton";
-
+/*
 const About = dynamic(() => import("@/app/pages/About/about"), {
   loading: () => <LoadingSkeleton type="section" />,
 });
@@ -21,7 +22,7 @@ const Contact = dynamic(() => import("@/app/pages/Contact/page"), {
 const Footer = dynamic(() => import("@/app/pages/Footer/page"), {
   loading: () => <LoadingSkeleton type="form" />,
 });
-
+*/
 export default function Home() {
   return (
     <div className="scroll-smooth">
@@ -32,7 +33,7 @@ export default function Home() {
         <Hero />
       </section>
 
-      {/* Services Section - Full viewport height */}
+      {/* Services Section - Full viewport height 
       <Suspense fallback={<LoadingSkeleton type="section" />}>
         <section
           id="services"
@@ -42,14 +43,14 @@ export default function Home() {
         </section>
       </Suspense>
 
-      {/* About Section - Full viewport height */}
+      {/* About Section - Full viewport height *
       <Suspense fallback={<LoadingSkeleton type="section" />}>
         <section id="about" className=" ">
           <About />
         </section>
       </Suspense>
 
-      {/* Contact Section - Full viewport height */}
+      {/* Contact Section - Full viewport height 
       <Suspense fallback={<LoadingSkeleton type="form" />}>
         <section
           id="contact"
@@ -63,7 +64,7 @@ export default function Home() {
         <section className=" ">
           <Footer />
         </section>
-      </Suspense>
+      </Suspense>*/}
     </div>
   );
 }
