@@ -87,7 +87,7 @@ const NeuroflowContact = () => {
                   WebkitBackgroundClip: "text",
                 }}
               >
-            { isSubmitting ? "Merci pour votre message !" :"Formulaire de contact"}
+            { isSubmitting ? "Merci pour votre message !" :""}
               </motion.h4>
 
         {!isSubmitting ? (
@@ -98,7 +98,7 @@ const NeuroflowContact = () => {
               name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Votre nom"
+              placeholder="Nom"
               required
               className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
             />
@@ -108,7 +108,7 @@ const NeuroflowContact = () => {
               name="last_name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              placeholder="Votre prénom"
+              placeholder="Prénom"
               required
               className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
             />
@@ -118,7 +118,7 @@ const NeuroflowContact = () => {
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Votre email"
+              placeholder="Email"
               required
               className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
             />
@@ -128,7 +128,7 @@ const NeuroflowContact = () => {
               name="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              placeholder="Votre numéro (ex: +33 6 12 34 56 78)"
+              placeholder="Numéro (ex: +33 6 12 34 56 78)"
               required
               className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
             />
@@ -139,7 +139,7 @@ const NeuroflowContact = () => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               rows={4}
-              placeholder="Votre message"
+              placeholder="Message"
               required
               className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
             ></textarea>

@@ -35,15 +35,19 @@ const Contact = () => {
           >
             Contactez-nous
           </motion.h2>
-          <h3 className="mb-6 text-l font-bold  text-purple-900">
-            Vous avez une question, un projet ou besoin de plus d&#39;informations
-            Remplissez le formulaire et nous vous répondrons dans les plus brefs
-            délais.{" "}
-          </h3>
+          <span className="mb-6 text-s  text-purple-900">
+            Vous avez un projet innovant, une idée à développer, ou simplement
+            besoin d&#39;un accompagnement technique ?
+            <br/> Notre équipe est prête à
+            vous accompagner à chaque étape.<br/>
+             Contactez-nous dès maintenant pour
+            une consultation gratuite.{" "}<br/>
+            
+          </span>
           <ul className="space-y-3 text-purple-900 text-sm">
-            <li>📞 +33 6 12 34 56 78</li>
-            <li>📧 contact@neuroflow.com</li>
-            <li>📍 42 rue de l&#39;Innovation, Paris</li>
+            <li>📞 +33 7 70 32 60 26</li>
+            <li>📧 neuroflowconsulting@gmail.com</li>
+            <li>📍 104 Avenue Dussap 83000 Toulon</li>
           </ul>
         </div>
         <div className="">

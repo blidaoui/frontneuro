@@ -10,16 +10,18 @@
   },
   "dependencies": {
     "@coreui/react": "^5.5.0",
+    "@emailjs/browser": "^4.4.1",
     "@next/font": "^14.2.15",
     "@react-three/drei": "^10.0.8",
     "@react-three/fiber": "^9.1.2",
+    "@tabler/icons-react": "^3.33.0",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.12.2",
+    "framer-motion": "^12.15.0",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.487.0",
-    "motion": "^12.12.2",
+    "motion": "^12.15.0",
     "next": "15.2.4",
     "next-themes": "^0.4.6",
     "react": "^19.0.0",
@@ -38,9 +40,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
-    "tailwindcss": "^4",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.7",
     "typescript": "^5.8.3"
   }
 }

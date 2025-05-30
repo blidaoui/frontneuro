@@ -9,3 +9,4 @@ export function cn(...inputs: ClassValue[]) {
 export function formatDate(date: Date) {
   return new Intl.DateTimeFormat("fr-FR").format(date);
 }
+ 
