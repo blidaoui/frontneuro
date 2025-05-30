@@ -19,7 +19,11 @@ const ParticleSystem = dynamic(
 
 export default function page() {
   const socialMedia = [
-  
+    {
+      icon: <Twitter className="w-6 h-6" />,
+      href: "https://twitter.com/neuroflow",
+      delay: 0.2,
+    },
     {
       icon: <Linkedin className="w-6 h-6" />,
       href: "https://linkedin.com/company/neuroflow",
