@@ -35,7 +35,7 @@ const Contact = () => {
           >
             Contactez-nous
           </motion.h2>
-          <span className="mb-6 text-s  text-purple-900">
+         {/* <span className="mb-6 text-s  text-purple-900">
             Vous avez un projet innovant, une idée à développer, ou simplement
             besoin d&#39;un accompagnement technique ?
             <br/> Notre équipe est prête à
@@ -43,7 +43,7 @@ const Contact = () => {
              Contactez-nous dès maintenant pour
             une consultation gratuite.{" "}<br/>
             
-          </span>
+          </span>*/}
           <ul className="space-y-3 text-purple-900 text-sm">
             <li>📞 +33 7 70 32 60 26</li>
             <li>📧 neuroflowconsulting@gmail.com</li>
