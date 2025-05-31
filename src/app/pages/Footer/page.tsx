@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter } from "lucide-react";
+//import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter } from "lucide-react";
 import dynamic from "next/dynamic";
 import React from "react";
 import Image from "next/image";
@@ -18,7 +18,7 @@ const ParticleSystem = dynamic(
 );
 
 export default function page() {
-  const socialMedia = [
+ /* const socialMedia = [
     {
       icon: <Twitter className="w-6 h-6" />,
       href: "https://twitter.com/neuroflow",
@@ -49,7 +49,7 @@ export default function page() {
       href: "https://whatsapp.com/neuroflow",
       delay: 0.2,
     },
-  ];
+  ];*/
   return (
     <section className="bg-gradient-to-r ">
       <ParticleSystem />
@@ -99,7 +99,7 @@ export default function page() {
           transition={{ delay: 0.8 }}
         >
           <div className="flex flex-col items-center gap-4">
-            <motion.div
+           {/* <motion.div
               className="flex gap-2 relative"
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
@@ -122,7 +122,7 @@ export default function page() {
                   {item.icon}
                 </motion.a>
               ))}
-            </motion.div>
+            </motion.div> */}
             <motion.div
               className="flex items-center gap-3 text-slate-400 hover:text-purple-400 transition-colors "
               whileHover={{ scale: 1.05 }}

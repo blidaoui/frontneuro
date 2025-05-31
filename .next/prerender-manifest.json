@@ -78,30 +78,6 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/pages/Footer": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/pages/Footer",
-      "dataRoute": "/pages/Footer.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/pages/Services": {
       "experimentalBypassFor": [
         {
@@ -125,13 +101,37 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
+    },
+    "/pages/Footer": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/pages/Footer",
+      "dataRoute": "/pages/Footer.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "44283ef7cb2ac23d3354a49a934617e6",
-    "previewModeSigningKey": "b8a6680027d03941519ad8bf1e0289614fd04e0fb6342543ae662c5c431f15dc",
-    "previewModeEncryptionKey": "b2bc292506440567c63fa3df473383c9432dd068e3de810819be5e654a0fd875"
+    "previewModeId": "6d020e643331be5c30af31a2727ad10e",
+    "previewModeSigningKey": "7833de3db5c12530ab0d52295de87427b0412d37385e8483c844837f98ac97ec",
+    "previewModeEncryptionKey": "f78ed0e1cfab626c4dd77bb746dfba98eb5cdb20ee78d9688ee3c6b28a2ef261"
   }
 }

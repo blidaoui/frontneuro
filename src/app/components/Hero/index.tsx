@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import Card from "../Card/card";
+//import Card from "../Card/card";
 
 import "./hero.css";
 
@@ -174,7 +174,7 @@ const Hero = () => {
         >
           <div className="w-full h-full flex items-center justify-center">
             <span className="text-gray-400">
-              <Card />
+              {/*<Card />*/}
             </span>
           </div>
         </motion.div>
