@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-//import Card from "../Card/card";
+import Card from "../Card/card";
 
 import "./hero.css";
 
@@ -125,7 +125,7 @@ const Hero = () => {
             NeuroFlow Consulting
             </div>
           </motion.h1>
-{/*
+
           <motion.p
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,7 +134,7 @@ const Hero = () => {
           >
             Transformez vos défis numériques en opportunités stratégiques.
           </motion.p>
-*/}
+
           <motion.button
             whileHover={{
               scale: 1.05,
@@ -174,7 +174,7 @@ const Hero = () => {
         >
           <div className="w-full h-full flex items-center justify-center">
             <span className="text-gray-400">
-              {/*<Card />*/}
+              <Card />
             </span>
           </div>
         </motion.div>
