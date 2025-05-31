@@ -125,7 +125,7 @@ const Hero = () => {
             NeuroFlow Consulting
             </div>
           </motion.h1>
-
+{/*
           <motion.p
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,7 +134,7 @@ const Hero = () => {
           >
             Transformez vos défis numériques en opportunités stratégiques.
           </motion.p>
-
+*/}
           <motion.button
             whileHover={{
               scale: 1.05,
