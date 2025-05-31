@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Card from "../Card/card";
+import { Typewriter } from "react-simple-typewriter";
 
 import "./hero.css";
 
@@ -126,15 +127,31 @@ const Hero = () => {
             </div>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1 }}
-            className="text-lg sm:text-xl md:text-2xl text-light-pink max-w-l leading-relaxed"
-          >
-            Transformez vos défis numériques en opportunités stratégiques.
-          </motion.p>
+        
+<motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 1 }}
+              className="mt-4 text-xl sm:text-2xl font-light tracking-wide text-gray-600"
+            >
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400  bg-clip-text text-transparent font-semibold">
+                <Typewriter
+                  words={[
+                    "Vous avez un projet innovant...",
+                    "Une idée à développer...",
+                    "Transformez vos défis numériques en opportunités stratégiques...",
 
+
+                  ]}
+                  loop={0}
+                  cursor
+                  cursorStyle="▌"
+                  typeSpeed={50}
+                  deleteSpeed={40}
+                  delaySpeed={1800}
+                />
+              </span>
+            </motion.div>
           <motion.button
             whileHover={{
               scale: 1.05,

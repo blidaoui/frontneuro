@@ -13,13 +13,6 @@ import "react-toastify/dist/ReactToastify.css";
   };
 
 
-const validatePhone = (number: string) => {
-  const cleaned = number.replace(/\s+/g, "");
-  const france = /^(\+33|0033|0)[1-9]\d{8}$/;
-  const tunisie = /^(\+216|00216)[2-9]\d{7}$/;
-  const europe = /^\+[\d]{10,14}$/;
-  return france.test(cleaned) || tunisie.test(cleaned) || europe.test(cleaned);
-};
 
 const NeuroflowContact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,10 +31,6 @@ const NeuroflowContact = () => {
       return;
     }
 
-    if (!validatePhone(phone)) {
-      setError("Numéro invalide. Ex : +33 6 12 34 56 78 ou +216 20 123 456");
-      return;
-    }
 
     setError("");
     setIsSubmitting(true);
@@ -100,7 +89,7 @@ const NeuroflowContact = () => {
               onChange={(e) => setName(e.target.value)}
               placeholder="Nom"
               required
-              className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
+  className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 text-[#4A1D96] placeholder-[#4A1D96]"
             />
 
             <input
@@ -110,7 +99,7 @@ const NeuroflowContact = () => {
               onChange={(e) => setLastName(e.target.value)}
               placeholder="Prénom"
               required
-              className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
+  className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 text-[#4A1D96] placeholder-[#4A1D96]"
             />
 
             <input
@@ -120,7 +109,7 @@ const NeuroflowContact = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               required
-              className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
+  className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 text-[#4A1D96] placeholder-[#4A1D96]"
             />
 
             <input
@@ -130,7 +119,7 @@ const NeuroflowContact = () => {
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Numéro (ex: +33 6 12 34 56 78)"
               required
-              className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
+  className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 text-[#4A1D96] placeholder-[#4A1D96]"
             />
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
@@ -139,9 +128,9 @@ const NeuroflowContact = () => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               rows={4}
-              placeholder="Message"
+              placeholder="Message ... "
               required
-              className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400"
+  className="w-full p-3 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 text-[#4A1D96] placeholder-[#4A1D96]"
             ></textarea>
 
             <motion.button
