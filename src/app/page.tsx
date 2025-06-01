@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import ScrollUp from "./components/Common/ScrollUp";
 import Hero from "./components/Hero";
 import LoadingSkeleton from "./components/Common/LoadingSkeleton";
-
+/*
 const About = dynamic(() => import("@/app/pages/About/about"), {
   loading: () => <LoadingSkeleton type="section" />,
 });
@@ -13,7 +13,7 @@ const About = dynamic(() => import("@/app/pages/About/about"), {
 const Services = dynamic(() => import("@/app/pages/Services/page"), {
   loading: () => <LoadingSkeleton type="grid" />,
 });
-
+*/
 const Contact = dynamic(() => import("@/app/pages/Contact/page"), {
   loading: () => <LoadingSkeleton type="form" />,
 });
@@ -32,7 +32,7 @@ export default function Home() {
         <Hero />
       </section>
 
-      {/* Services Section - Full viewport height*/}
+      {/* Services Section - Full viewport height
       <Suspense fallback={<LoadingSkeleton type="section" />}>
         <section
           id="services"
@@ -42,7 +42,7 @@ export default function Home() {
         </section>
       </Suspense>
 
-      {/* About Section - Full viewport height */}
+      {/* About Section - Full viewport height 
       <Suspense fallback={<LoadingSkeleton type="section" />}>
         <section id="about" className=" ">
           <About />

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import Card from "../Card/card";
+//import Card from "../Card/card";
 import { Typewriter } from "react-simple-typewriter";
 
 import "./hero.css";
@@ -137,9 +137,9 @@ const Hero = () => {
               <span className="bg-gradient-to-r from-purple-400 to-pink-400  bg-clip-text text-transparent font-semibold">
                 <Typewriter
                   words={[
-                    "Vous avez un projet innovant...",
+                   /* "Vous avez un projet innovant...",
                     "Une idée à développer...",
-                    "Transformez vos défis numériques en opportunités stratégiques...",
+                    "Transformez vos défis numériques en opportunités stratégiques...",*/
 
 
                   ]}
@@ -191,7 +191,7 @@ const Hero = () => {
         >
           <div className="w-full h-full flex items-center justify-center">
             <span className="text-gray-400">
-              <Card />
+             {/*  <Card />*/}
             </span>
           </div>
         </motion.div>
