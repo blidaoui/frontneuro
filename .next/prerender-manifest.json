@@ -30,6 +30,30 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/pages/Footer": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/pages/Footer",
+      "dataRoute": "/pages/Footer.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/pages/Contact": {
       "experimentalBypassFor": [
         {
@@ -101,37 +125,13 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
-    },
-    "/pages/Footer": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/pages/Footer",
-      "dataRoute": "/pages/Footer.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "af7e158a7336766cb425d68b2698799a",
-    "previewModeSigningKey": "07b41efd4501eebb53728195d13e44f139cc06300858dfa1d7c9c71af0c5e984",
-    "previewModeEncryptionKey": "e505e1c35ac5384825044413a65c4a117ce0d14ecb50e67aa7fcfa2c9de3feea"
+    "previewModeId": "2289c7575d93875a8c4fa0dc5d3ab0aa",
+    "previewModeSigningKey": "c772ac8d3e4ef823ee3ae26d1a9d43f807a7c60f2970f781d3012ca56944974f",
+    "previewModeEncryptionKey": "c3051d89214e12854993cccf37c5a4d1ac48f093b703581e6b2056ee94132f9d"
   }
 }
