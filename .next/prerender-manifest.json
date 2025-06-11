@@ -54,30 +54,6 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/pages/Contact": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/pages/Contact",
-      "dataRoute": "/pages/Contact.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/": {
       "experimentalBypassFor": [
         {
@@ -125,13 +101,37 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
+    },
+    "/pages/Contact": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/pages/Contact",
+      "dataRoute": "/pages/Contact.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "2289c7575d93875a8c4fa0dc5d3ab0aa",
-    "previewModeSigningKey": "c772ac8d3e4ef823ee3ae26d1a9d43f807a7c60f2970f781d3012ca56944974f",
-    "previewModeEncryptionKey": "c3051d89214e12854993cccf37c5a4d1ac48f093b703581e6b2056ee94132f9d"
+    "previewModeId": "a432c2dc88e9523d221bac087748838a",
+    "previewModeSigningKey": "8454f8b73b0585a10bfc03eb164b0c5e9cb12975f4b3cc1a7384eeb5968d35e4",
+    "previewModeEncryptionKey": "f1a49f23b7645d5dc2037846bd448aa1d22657e62871f66c698faa0fbef39b79"
   }
 }

@@ -1,199 +1,142 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-//import Card from "../Card/card";
+import { motion, Variants } from "framer-motion";
+import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
+import { MouseEvent } from "react";
 
-import "./hero.css";
-
-// FloatingParticles component with hydration fix
-const FloatingParticles = () => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
-  return (
-    <div className="absolute inset-0 overflow-hidden z-0">
-      {Array(30)
-        .fill(0)
-        .map((_, i) => {
-          // Generate stable positions based on index
-          const stableSeed = i * 1000;
-          const stableRandom = (seedOffset: number) => {
-            const x = Math.sin(stableSeed + seedOffset) * 10000;
-            return x - Math.floor(x);
-          };
-
-          const width = stableRandom(1) * 10 + 5;
-          const height = stableRandom(2) * 10 + 5;
-          const left = stableRandom(3) * 100;
-          const top = stableRandom(4) * 100;
-
-          return (
-            <motion.div
-              key={i}
-              className="absolute rounded-full bg-pink-400 opacity-20"
-              style={{
-                width: `${width}px`,
-                height: `${height}px`,
-                left: `${left}%`,
-                top: `${top}%`,
-              }}
-              animate={{
-                y: [
-                  (stableRandom(5) - 0.5) * 100,
-                  (stableRandom(6) - 0.5) * 100,
-                ],
-                x: [(stableRandom(7) - 0.5) * 50, (stableRandom(8) - 0.5) * 50],
-                opacity: [0.1, 0.3, 0.1],
-              }}
-              transition={{
-                duration: stableRandom(9) * 10 + 10,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "linear",
-              }}
-            />
-          );
-        })}
-    </div>
-  );
+const characterVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
 };
 
-const handleScrollToServices = () => {
-  const servicesSection = document.getElementById("services");
-  if (servicesSection) {
-    const offset = 80; // Adjust this value based on your navbar height
-    const bodyRect = document.body.getBoundingClientRect().top;
-    const elementRect = servicesSection.getBoundingClientRect().top;
-    const elementPosition = elementRect - bodyRect;
-    const offsetPosition = elementPosition - offset;
+const titlePart1: string[] = "NeuroFlow".split("");
+const titlePart2: string[] = "Consulting".split("");
 
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth",
-    });
+const handleScrollToServices = (e: MouseEvent<HTMLButtonElement>, id: string): void => {
+  e.preventDefault();
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  } else {
+    window.location.hash = id;
   }
 };
-const Hero = () => {
+
+const Hero: React.FC = () => {
   return (
     <motion.section
       id="home"
-      className=" h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800"
+      className="relative h-screen overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 1.5, ease: "easeOut" }}
     >
-      <FloatingParticles />
-
-      {/* Animated gradient background */}
-      <motion.div
-        className="absolute inset-0 z-0 opacity-30"
-        animate={{
-          background: [
-            "radial-gradient(circle at 75% 25%,rgb(102, 158, 248), transparent 60%)",
-            "radial-gradient(circle at 25% 75%, #8b5cf6, transparent 60%)",
-            "radial-gradient(circle at 50% 50%,rgb(214, 45, 130), transparent 60%)",
-          ],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "linear",
-        }}
+      <Image
+        src="/images/bg.png"
+        alt="Futuristic neural network background"
+        fill
+        quality={100}
+        priority
+        className="object-cover object-center"
       />
-
-      <div className="container grid grid-cols-1 md:grid-cols-2 items-center gap-10 px-6 lg:px-12 relative z-10">
-        {/* Left Side - Text Content */}
+      <div className="container h-full flex items-center px-6 lg:px-16 relative z-10">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className=" text-left space-y-8"
+          transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
+          className="text-left space-y-8 max-w-xl"
         >
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 uppercase"
+          {/* Title Split into Two Lines */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            transition={{ staggerChildren: 0.05 }}
+            className="text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase"
           >
-            <div className="color-change">
-            NeuroFlow Consulting
-            </div>
-          </motion.h1>
-
-        
-<motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 1 }}
-              className="mt-4 text-xl sm:text-2xl font-light tracking-wide text-gray-600"
+            <motion.div
+              variants={characterVariants}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400  bg-clip-text text-transparent font-semibold">
-                <Typewriter
-                  words={[
-                   /* "Vous avez un projet innovant...",
-                    "Une idée à développer...",
-                    "Transformez vos défis numériques en opportunités stratégiques...",*/
-
-
-                  ]}
-                  loop={0}
-                  cursor
-                  cursorStyle="▌"
-                  typeSpeed={50}
-                  deleteSpeed={40}
-                  delaySpeed={1800}
-                />
-              </span>
+              {titlePart1.map((char, index) => (
+                <motion.span
+                  key={index}
+                  variants={characterVariants}
+                  className="text-dark-purple text-shadow-lg"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
             </motion.div>
+            <motion.div
+              variants={characterVariants}
+              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            >
+              {titlePart2.map((char, index) => (
+                <motion.span
+                  key={index}
+                  variants={characterVariants}
+                  className="text-dark-pink text-shadow-lg"
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Typewriter Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 1.2, ease: "easeOut" }}
+            className="text-xl sm:text-2xl lg:text-3xl font-light text-gray-100 tracking-wide"
+          >
+            <span className="bg-gradient-to-r from-purple-300 to-pink-400 bg-clip-text text-transparent font-medium">
+              <Typewriter
+                words={[
+                  "Vous avez un projet innovant...",
+                  "Une idée à développer...",
+                  "Transformez vos défis numériques en opportunités stratégiques...",
+                ]}
+                loop={0}
+                cursor
+                cursorStyle="|"
+                typeSpeed={60}
+                deleteSpeed={40}
+                delaySpeed={1000}
+              />
+            </span>
+          </motion.div>
+
+          {/* Button */}
           <motion.button
             whileHover={{
-              scale: 1.05,
-              boxShadow: "0px 0px 20px rgba(99, 102, 241, 0.7)",
+              scale: 1.1,
+              boxShadow: "0 0 15px rgba(82, 50, 111, 0.7)",
             }}
             whileTap={{ scale: 0.95 }}
-            onClick={handleScrollToServices}
-            className="px-10 py-4 text-lg bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 group relative overflow-hidden"
-            initial={{ opacity: 0, y: 20 }}
+            onClick={(e: MouseEvent<HTMLButtonElement>) => handleScrollToServices(e, "services")}
+            className="px-6 py-3 text-lg bg-gradient-to-r from-purple-900 to-pink-400 rounded-full text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 group relative overflow-hidden"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.2 }}
+            transition={{ delay: 2.0, duration: 1.0, ease: "easeOut" }}
           >
-            <motion.span className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="relative text-light-pink z-10 tracking-wide ">
-              Découvrir nos services
-            </span>
             <motion.span
-              animate={{ y: [0, -6, 0] }}
+              className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            />
+            <span className="relative z-10">Découvrir nos Services</span>
+            <motion.span
+              animate={{ x: [0, 5, 0] }}
               transition={{
-                duration: 1,
+                duration: 1.5,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="relative z-10 text-2xl"
+              className="relative z-10 text-xl"
             >
               ↓
             </motion.span>
           </motion.button>
-        </motion.div>
-
-        {/* Right Side - Optional 3D Model Placeholder */}
-        <motion.div
-          className="hidden md:block h-[400px] lg:h-[500px] relative"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.7 }}
-        >
-          <div className="w-full h-full flex items-center justify-center">
-            <span className="text-gray-400">
-             {/*  <Card />*/}
-            </span>
-          </div>
         </motion.div>
       </div>
     </motion.section>

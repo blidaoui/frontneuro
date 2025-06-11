@@ -403,3 +403,23 @@ html, body {
 
 
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap');
+
+.modern-title {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: clamp(2rem, 4vw, 3.75rem); /* Responsive size */
+  font-weight:bolder; /* Extra bold */
+  color: #eacae4;
+  text-transform: uppercase;
+}
+
+.modern-title:hover {
+  transform: scale(1.02); /* Slight scale on hover for interactivity */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap');
+
+.text-shadow-lg {
+  text-shadow: 0 0 10px rgba(241, 145, 222, 0.7), 0 0 20px rgba(230, 136, 214, 0.5);
+}
+
