@@ -423,3 +423,17 @@ html, body {
   text-shadow: 0 0 10px rgba(241, 145, 222, 0.7), 0 0 20px rgba(230, 136, 214, 0.5);
 }
 
+
+@keyframes gradient-text {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-text {
+  background-size: 200% 200%;
+  animation: gradient-text 4s ease infinite;
+}

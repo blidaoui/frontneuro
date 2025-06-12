@@ -92,7 +92,7 @@ const Navbar: React.FC = () => {
               className="mx-auto px-4 py-2 text-lg bg-gradient-to-r from-purple-900 to-pink-400 rounded-full text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 group relative overflow-hidden"
             >
               <motion.span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative z-10">Contact</span>
+              <span className="relative z-10">Contactez nous</span>
             </motion.button>
           </div>
           <button
@@ -133,7 +133,7 @@ const Navbar: React.FC = () => {
                   className="mx-auto px-4 py-2 text-lg bg-gradient-to-r from-purple-900 to-pink-400 rounded-full text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 group relative overflow-hidden"
                 >
                   <motion.span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <span className="relative z-10">Contact</span>
+                  <span className="relative z-10">Contactez nous</span>
                 </motion.button>
               </div>
             </motion.div>

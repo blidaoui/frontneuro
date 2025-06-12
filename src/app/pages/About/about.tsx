@@ -13,15 +13,34 @@ export default function AboutPage() {
     lightBlue: "#3B82F6",
   };
 
-
-
+  // Animation Variants
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number = 0) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.15 },
+      transition: { delay: i * 0.15, type: "spring", stiffness: 120 },
     }),
+  };
+
+  const scaleIn = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const teamMembers = [
@@ -29,42 +48,31 @@ export default function AboutPage() {
       id: 1,
       name: "N. BLIDAOUI",
       role: "Fondateur & Visionnaire",
-      icon: (
-        <Rocket className="w-6 h-6" style={{ color: colors.mediumPurple }} />
-      ),
+      icon: <Rocket className="w-6 h-6" style={{ color: colors.mediumPurple }} />,
       description:
         "Avec une expertise et une passion pour la technologie, l’innovation et la gestion d’entreprise, N. Blidaoui incarne la vision de NeuroFlow Consulting. Fort de son expérience dans le biomédical, la gestion de projet et l’entrepreneuriat, il structure l’ensemble, donne la direction stratégique, et veille à l’harmonie entre efficacité technique et clarté opérationnelle.",
     },
     {
       id: 2,
-
       name: "I. BLIDAOUI",
       role: "Développement & Ingénierie digitale",
-      icon: (
-        <ShieldCheck className="w-6 h-6" style={{ color: colors.darkPink }} />
-      ),
+      icon: <ShieldCheck className="w-6 h-6" style={{ color: colors.darkPink }} />,
       description:
         "Spécialiste du développement sur mesure, I. Blidaoui conçoit des sites web, des applications et des plateformes performantes, adaptées aux besoins réels des clients. Il veille à la stabilité, la sécurité et l’optimisation continue de chaque solution.",
     },
     {
       id: 3,
-
       name: "A. BLIDAOUI",
       role: "Data & Analyse stratégique",
-      icon: (
-        <BrainCircuit className="w-6 h-6" style={{ color: colors.darkBlue }} />
-      ),
+      icon: <BrainCircuit className="w-6 h-6" style={{ color: colors.darkBlue }} />,
       description:
         "Data analyst méticuleux, A. Blidaoui transforme les données brutes en leviers de performance. De l’analyse exploratoire à la création de dashboards, il rend les données compréhensibles, exploitables et intelligemment présentées.",
     },
     {
       id: 4,
-
       name: "A. BLIDAOUI",
       role: "Design & Identité visuelle",
-      icon: (
-        <Sparkles className="w-6 h-6" style={{ color: colors.lightBlue }} />
-      ),
+      icon: <Sparkles className="w-6 h-6" style={{ color: colors.lightBlue }} />,
       description:
         "Graphiste créatif et innovant, A. Blidaoui imagine des identités visuelles percutantes, des mises en page professionnelles, et des contenus multimédias qui marquent les esprits. Son travail relie esthétique, émotion et impact visuel.",
     },
@@ -98,9 +106,9 @@ export default function AboutPage() {
       {/* Background animé */}
       <motion.div
         className="absolute inset-0 z-0 opacity-15"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.15 }}
-        transition={{ duration: 2 }}
+        initial={{ opacity: 0, scale: 1.2 }}
+        animate={{ opacity: 0.15, scale: 1 }}
+        transition={{ duration: 3, ease: "easeOut" }}
       >
         <Image
           src="/images/logoabout.png"
@@ -112,17 +120,22 @@ export default function AboutPage() {
       </motion.div>
 
       {/* Section Hero */}
-      <motion.section className="relative pt-24 md:pt-32 pb-16 px-4 sm:px-6 lg:px-12">
+      <motion.section
+        className="relative pt-24 md:pt-32 pb-16 px-4 sm:px-6 lg:px-12"
+        initial="hidden"
+        whileInView="visible"
+        variants={staggerContainer}
+        viewport={{ once: true, margin: "-100px" }}
+      >
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 md:gap-16 items-center">
           {/* Contenu texte */}
-          <div className="flex-1 space-y-6 relative z-10">
-            <motion.div
-              variants={fadeInUp}
-              className="inline-flex items-center gap-3 mb-6"
-            >
-              <div
+          <motion.div className="flex-1 space-y-6 relative z-10" variants={fadeInUp}>
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-3 mb-6">
+              <motion.div
                 className="relative w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2"
                 style={{ borderColor: colors.darkPurple }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: "spring", stiffness: 200 }}
               >
                 <Image
                   src="/images/logoabout.png"
@@ -130,7 +143,7 @@ export default function AboutPage() {
                   fill
                   className="object-contain"
                 />
-              </div>
+              </motion.div>
               <span
                 className="font-semibold text-sm md:text-base uppercase tracking-wider"
                 style={{ color: colors.darkPurple }}
@@ -144,14 +157,16 @@ export default function AboutPage() {
               variants={fadeInUp}
               custom={1}
             >
-              <span
+              <motion.span
                 className="text-transparent bg-clip-text"
                 style={{
                   backgroundImage: `linear-gradient(135deg, ${colors.darkPurple}, ${colors.darkPink})`,
                 }}
+                animate={{ backgroundPosition: ["0%", "100%"] }}
+                transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
               >
                 La technologie en mouvement
-              </span>
+              </motion.span>
             </motion.h1>
 
             <motion.p
@@ -160,7 +175,6 @@ export default function AboutPage() {
               custom={2}
             >
               Chez NeuroFlow Consulting, nous croyons que l&#39;innovation n&#39;a de
-              
               valeur que si elle est
               <span
                 className="font-semibold"
@@ -197,15 +211,18 @@ export default function AboutPage() {
               numérique, NeuroFlow Consulting est une société à taille humaine,
               mais aux ambitions larges.
             </motion.p>
-          </div>
+          </motion.div>
 
           {/* Image Hero */}
           <motion.div
-            initial={{ rotate: -15, scale: 0.9, opacity: 0 }}
-            animate={{ rotate: 0, scale: 1, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 100, delay: 0.4 }}
+            variants={scaleIn}
             className="relative w-48 h-48 md:w-64 md:h-64 lg:w-96 lg:h-96 rounded-2xl md:rounded-3xl overflow-hidden border-4 bg-white"
             style={{ borderColor: `${colors.darkPurple}20` }}
+            whileHover={{
+              scale: 1.05,
+              rotate: 2,
+              transition: { type: "spring", stiffness: 200 },
+            }}
           >
             <Image
               src="/images/logoabout.png"
@@ -226,14 +243,12 @@ export default function AboutPage() {
           backgroundImage: `radial-gradient(circle at 20% 30%, ${colors.darkPurple}03, transparent 50%)`,
         }}
       >
-        {/* Conteneur principal */}
         <div className="max-w-7xl mx-auto relative z-10 space-y-12">
-          {/* En-tête avec animations */}
           <motion.div
             className="text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ staggerChildren: 0.2 }}
+            initial="hidden"
+            whileInView="visible"
+            variants={staggerContainer}
             viewport={{ once: true, margin: "-100px" }}
           >
             <motion.h2
@@ -242,10 +257,7 @@ export default function AboutPage() {
                 backgroundImage: `linear-gradient(135deg, ${colors.darkPurple}, ${colors.darkPink})`,
                 WebkitBackgroundClip: "text",
               }}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
-              }}
+              variants={fadeInUp}
             >
               Notre Équipe d&#39;Exception
             </motion.h2>
@@ -256,17 +268,20 @@ export default function AboutPage() {
                 backgroundImage: `linear-gradient(135deg, ${colors.darkPurple}, ${colors.mediumPurple})`,
                 WebkitBackgroundClip: "text",
               }}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
+              variants={fadeInUp}
+              custom={1}
             >
               L&#39;équipe NeuroFlow Consulting : une famille, quatre piliers
             </motion.h4>
           </motion.div>
 
-          {/* Grille des membres */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             <AnimatePresence>
               {teamMembers.map((member, index) => (
                 <motion.div
@@ -276,36 +291,32 @@ export default function AboutPage() {
                     borderColor: `${colors.darkPurple}10`,
                     willChange: "transform",
                   }}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      delay: index * 0.1,
-                      type: "spring",
-                      stiffness: 100,
-                    },
-                  }}
-                  viewport={{ once: true, margin: "-50px" }}
+                  variants={fadeInUp}
+                  custom={index}
                   whileHover={{
-                    y: -5,
+                    y: -8,
+                    scale: 1.03,
+                    boxShadow: `0 10px 20px ${colors.darkPurple}10`,
                     transition: { type: "spring", stiffness: 300 },
                   }}
                 >
-                  {/* Fond au hover */}
-                  <div
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  <motion.div
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
                     style={{
                       backgroundImage: `linear-gradient(135deg, ${colors.darkPurple}05, ${colors.darkPink}05)`,
                     }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.4 }}
                   />
 
-                  {/* Avatar animé */}
                   <motion.div
                     className="mb-6 flex justify-center"
                     whileHover={{
-                      rotate: [0, -5, 5, 0],
-                      transition: { duration: 0.6 },
+                      rotate: [0, -10, 10, -5, 0],
+                      scale: 1.2,
+                      transition: { duration: 0.8 },
                     }}
                   >
                     <div className="p-3 bg-gradient-to-br from-purple-50 to-pink-50 rounded-full">
@@ -313,25 +324,37 @@ export default function AboutPage() {
                     </div>
                   </motion.div>
 
-                  {/* Contenu texte */}
                   <div className="relative space-y-3">
-                    <h3 className="text-xl md:text-2xl font-bold text-gray-900">
+                    <motion.h3
+                      className="text-xl md:text-2xl font-bold text-gray-900"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: index * 0.1 + 0.2 }}
+                    >
                       {member.name}
-                    </h3>
-                    <p
+                    </motion.h3>
+                    <motion.p
                       className="text-sm md:text-base font-semibold"
                       style={{ color: colors.darkPurple }}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: index * 0.1 + 0.3 }}
                     >
                       {member.role}
-                    </p>
-                    <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                    </motion.p>
+                    <motion.p
+                      className="text-gray-600 text-sm md:text-base leading-relaxed"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: index * 0.1 + 0.4 }}
+                    >
                       {member.description}
-                    </p>
+                    </motion.p>
                   </div>
                 </motion.div>
               ))}
             </AnimatePresence>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -341,43 +364,49 @@ export default function AboutPage() {
         style={{ backgroundColor: `${colors.darkPurple}05` }}
       >
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-            <motion.div
-              initial={{ x: -100, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              className="space-y-6 md:space-y-8"
-            >
+          <motion.div
+            className="grid md:grid-cols-2 gap-8 md:gap-16 items-center"
+            initial="hidden"
+            whileInView="visible"
+            variants={staggerContainer}
+            viewport={{ once: true, margin: "-80px" }}
+          >
+            <motion.div className="space-y-6 md:space-y-8" variants={fadeInUp}>
               <motion.h2
                 className="text-3xl md:text-4xl font-bold text-center text-transparent bg-clip-text inline-block mb-12 md:mb-16"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                variants={fadeInUp}
                 style={{
                   backgroundImage: `linear-gradient(135deg, ${colors.darkPurple}, ${colors.darkPink})`,
                   WebkitBackgroundClip: "text",
                 }}
               >
-                Notre Philosophie Technique{" "}
+                Notre Philosophie Technique
               </motion.h2>
 
-              <motion.ul
-                className="space-y-4 md:space-y-6"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
+              <motion.ul className="space-y-4 md:space-y-6" variants={staggerContainer}>
                 {philosophyItems.map((item, i) => (
                   <motion.li
                     key={i}
-                    custom={i}
-                    variants={fadeInUp}
                     className="flex items-center gap-3 md:gap-4 text-gray-700 text-base md:text-lg font-medium"
+                    variants={fadeInUp}
+                    custom={i}
+                    whileHover={{
+                      x: 10,
+                      transition: { type: "spring", stiffness: 200 },
+                    }}
                   >
                     <motion.span
-                      className="text-2xl flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-sm"
-                      animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
-                      transition={{ duration: 3, repeat: Infinity }}
+                      className="text-xl md:text-2xl flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-sm"
+                      style={{
+                        backgroundImage: item.color,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                      animate={{
+                        rotate: [0, 360],
+                        scale: [1, 1.2, 1],
+                      }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     >
                       {item.icon}
                     </motion.span>
@@ -386,85 +415,92 @@ export default function AboutPage() {
                 ))}
               </motion.ul>
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Section CTA avec Sparkles en haut */}
+      {/* Section CTA */}
       <div className="py-16 md:py-24 px-4 sm:px-6 lg:px-12 text-center relative overflow-hidden">
-        {/* Fond avec dégradés animés */}
         <motion.div
           className="absolute inset-0 z-0"
-    
-       
+          animate={{
+            background: [
+              `radial-gradient(circle at 20% 20%, ${colors.darkPurple}10, transparent 50%)`,
+              `radial-gradient(circle at 80% 80%, ${colors.darkPink}10, transparent 50%)`,
+            ],
+          }}
+          transition={{ duration: 8, repeat: Infinity, repeatType: "reverse" }}
         />
-
-        {/* Contenu principal */}
         <div className="relative z-10 mx-auto max-w-4xl">
-          {/* Carte avec animations */}
           <motion.div
-            initial={{ scale: 0.98, opacity: 0, y: 20 }}
-            whileInView={{ scale: 1, opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            variants={scaleIn}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
             className="md:p-8 rounded-xl md:rounded-2xl bg-white/95 backdrop-blur-md shadow-xl border border-gray-100"
+            whileHover={{ scale: 1.02 }}
           >
-            <div className="px-6 py-12 md:px-12 md:py-16 relative">
-              {/* Titre avec dégradé */}
-              <h3 className="text-2xl md:text-4xl font-bold mb-8 leading-tight">
+            <div className="relative">
+              <motion.h3
+                className="text-2xl md:text-4xl font-bold mb-8 leading-tight"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
                 <motion.span
-                  className="text-transparent bg-clip-text inline-block"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
+                  className="text-transparent bg-clip-text inline-block text-center"
                   style={{
                     backgroundImage: `linear-gradient(135deg, ${colors.darkPurple}, ${colors.darkPink})`,
                   }}
                 >
                   NeuroFlow Consulting
                 </motion.span>
-
-                {/* Texte descriptif */}
                 <motion.span
                   className="block mt-4 text-transparent bg-clip-text"
+                  style={{
+                    backgroundImage: `linear-gradient(135deg, ${colors.darkBlue}, ${colors.mediumPurple})`,
+                  }}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
-                  style={{
-                    backgroundImage: `linear-gradient(135deg, ${colors.darkPurple}, ${colors.mediumPurple})`,
-                  }}
                 >
-                  c&#39;est l&#39;énergie d&#39;un collectif, la précision d&#39;un expert,
-                  <br className="hidden md:block" /> et la promesse d&#39;un
-                  numérique plus fluide, plus beau, et plus efficace.
+                  c&#39;est l&#39;énergie d&#39;un mouvement collectif, la précision d&#39;un expert,
+                  <br className="hidden md:block" /> et la promesse d’un
+                  digital plus fluide, plus beau, et plus efficace.
                 </motion.span>
-              </h3>
+              </motion.h3>
 
-              {/* Animation Sparkles */}
               <motion.div
-                className="absolute left-1/2 -translate-x-1/2 -top-8 mb-5"
+                className="absolute left-1/2 -translate-x-1/2 -top-8 mb-14 flex items-center"
                 initial={{ opacity: 0, scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                animate={{
-                  rotate: [0, 15, -15, 0],
-                  y: [0, -5, 5, 0],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  repeatType: "mirror",
-                  ease: "easeInOut",
-                }}
+                transition={{ duration: 1, type: "spring", stiffness: 100 }}
               >
-                <Sparkles
-                  className="w-14 h-14 mt-8 md:w-16 md:h-16" 
+                <motion.div
+                  className="w-12 h-0.5 bg-gradient-to-r from-transparent via-purple-600 to-pink-500"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                />
+                <motion.span
+                  className="mx-4 text-2xl sm:text-3xl"
                   style={{
                     color: colors.darkPurple,
                     filter: `
-                drop-shadow(0 0 12px ${colors.darkPurple}40)
-                drop-shadow(0 0 6px ${colors.darkPink}30)
-              `,
+                      drop-shadow(0 0 12px ${colors.darkPurple}40)
+                      drop-shadow(0 0 6px ${colors.darkPink}30)
+                    `,
                   }}
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  ♥
+                </motion.span>
+                <motion.div
+                  className="w-12 h-0.5 bg-gradient-to-r from-pink-500 to-transparent"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
                 />
               </motion.div>
             </div>
